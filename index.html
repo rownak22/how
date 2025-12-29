@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Special Memories ❤️</title>
+    <style>
+        body {
+            background-color: #fff0f5;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 350px;
+        }
+        h1 { color: #ff4d6d; font-size: 22px; }
+        .instruction {
+            color: #d63031;
+            font-weight: bold;
+            font-size: 14px;
+            margin: 15px 0;
+            background: #ffeaa7;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .play-btn {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+        }
+        #status { margin-top: 15px; font-style: italic; color: #888; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+<div class="card" id="mainCard">
+    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpndWp3amF4eWZ4eGZyeGZyeGZyeGZyeGZyeGZyeGZyeGZyeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" width="80">
+    <h1>Our Voice Note ❤️</h1>
+    <p>Dost, bhabi-r jonno ekta gaan gaisilam, shune bol to kemon hoise?</p>
+    
+    <div class="instruction">
+        ⚠️ Sound ekdom LOW record hoise. Phone er sound FULL kore kaner kache niye shunis, naile kichui bujhbi na!
+    </div>
+    
+    <button class="play-btn" onclick="startPrank()">Play Audio</button>
+    <p id="status">Click to play...</p>
+</div>
+
+<audio id="romanticMusic" src="romantic.mp3"></audio>
+<audio id="prankSound" src="prank.mp3"></audio>
+
+<script>
+    function startPrank() {
+        let romantic = document.getElementById('romanticMusic');
+        let prank = document.getElementById('prankSound');
+        let status = document.getElementById('status');
+        let card = document.getElementById('mainCard');
+        
+        // Romantic music starts at very low volume (5%)
+        romantic.volume = 0.05; 
+        romantic.play();
+        status.innerText = "Playing: bhabi_voice_note.mp3 (0:01 / 2:45)";
+
+        // 3 second por ashol khela
+        setTimeout(function() {
+            romantic.pause(); 
+            
+            // Prank sound starts at full volume (100%)
+            prank.volume = 1.0; 
+            prank.play();
+            
+            // Screen Change to Troll
+            document.body.innerHTML = `
+                <div style="background:black; color:white; height:100vh; width:100vw; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHRnbGZ6bjE4ZWZ4eXN4YnZ4Z3Z4Z3Z4Z3Z4Z3Z4Z3Z4Z3Z4ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKVun7XYUC5t63K/giphy.gif" width="250">
+                    <h1 style="font-size: 50px; color: #ff4d6d;">BOKA BANALAM! 😂</h1>
+                    <p style="font-size: 24px;">Kemon dilam? Eibar party de!</p>
+                    <p style="font-size: 16px; color: #888;">(Volume ebar koman, naito kan fitte pare)</p>
+                </div>
+            `;
+        }, 7000); 
+    }
+</script>
+
+</body>
+</html>
